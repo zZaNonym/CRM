@@ -1,0 +1,29 @@
+<template>
+  <div id="app">
+    <component v-if="layout" :is="layout">
+      <router-view />
+    </component>
+  </div>
+</template>
+<script>
+import EmptyLayout from "@/layouts/Empty.vue";
+import MainLayout from "@/layouts/Main.vue";
+
+export default {
+  computed: {
+    layout() {
+      return this.$route.meta.layout
+        ? this.$route.meta.layout + "-layout"
+        : false;
+    }
+  },
+  components: {
+    EmptyLayout,
+    MainLayout
+  }
+};
+</script>
+<style lang="scss">
+@import "~materialize-css/dist/css/materialize.min.css";
+@import "assets/index.css";
+</style>
